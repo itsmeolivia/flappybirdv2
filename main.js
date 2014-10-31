@@ -7,32 +7,22 @@ canvas.height = 690;
 document.body.appendChild(canvas);
 
 var context = canvas.getContext("2d");
+var entities = [];
+entities.push(new Bird(canvas.width/2, canvas.height/2));
 
-var bird = {
-	x: canvas.width/2,
-	y: canvas.height/2
-};
-
-function physics() {
-	bird.y = 100 + 20 * Math.cos(new Date/100);
-	if(bird.x >= 0)
-		bird.x += 100;
-}
+var prev_t = 0;
 
 function tik(t) {
-	draw();
-	physics();
+
+	var dt = (t - prev_t) / 1000;
+	prev_t = t;
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	for (var i = 0; i < entities.length; i++) {
+		entities[i].update(dt);
+		entities[i].draw(context);
+	}
 	requestAnimationFrame(tik);
-	console.log(t);
 }
 
 requestAnimationFrame(tik);
-
 //xywh
-function draw(){
- context.clearRect(0, 0, canvas.width, canvas.height);
- context.fillStyle = "#00ffff";
- context.fillRect(bird.x - 10, bird.y - 10, 20, 20);
-}
-
-draw();
