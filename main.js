@@ -1,8 +1,8 @@
 
 var canvas = document.createElement("canvas");
 
-canvas.width = 420;
-canvas.height = 690;
+canvas.width = 515;
+canvas.height = 685;
 
 document.body.appendChild(canvas);
 
