@@ -18,7 +18,7 @@ function tik(t) {
 	prev_t = t;
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	for (var i = 0; i < entities.length; i++) {
-		entities[i].update(dt);
+		entities[i].update(dt, entities);
 		entities[i].draw(context);
 	}
 	requestAnimationFrame(tik);
